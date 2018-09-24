@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<solver>
+    <scanAnnotatedClasses>
+        <packageInclude>company.tothepoint.stsplanner.model</packageInclude>
+    </scanAnnotatedClasses>
+
+    <!-- Score configuration -->
+    <scoreDirectorFactory>
+        <easyScoreCalculatorClass>company.tothepoint.stsplanner.calculator.ScoreCalculator</easyScoreCalculatorClass>
+    </scoreDirectorFactory>
+
+    <!-- Optimization algorithms configuration -->
+    <termination>
+        <secondsSpentLimit>5</secondsSpentLimit>
+    </termination>
+
+    <!--<localSearch>
+        <unionMoveSelector>
+            <changeMoveSelector>
+                <filterClass>be.bitsandmore.fireplug.alertapi.service.userselection.move.VehicleSeatChangeMoveFilter</filterClass>
+            </changeMoveSelector>
+        </unionMoveSelector>
+    </localSearch>
+
+    <environmentMode>PRODUCTION</environmentMode>-->
+</solver>
