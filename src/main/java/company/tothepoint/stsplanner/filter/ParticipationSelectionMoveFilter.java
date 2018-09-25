@@ -11,9 +11,9 @@ public class ParticipationSelectionMoveFilter implements SelectionFilter<StsPlan
   public boolean accept(ScoreDirector<StsPlanningProblem> scoreDirector, ChangeMove selection) {
     TalkParticipation talkParticipation = (TalkParticipation)selection.getEntity();
     switch (selection.getVariableName()) {
-      case "pointers":
+      case "pointer":
           return hasNoPointerOccurenceInThisTimeSlot(scoreDirector.getWorkingSolution(), talkParticipation);
-      case "topics":
+      case "topic":
           return hasNoTopicOccurence(scoreDirector.getWorkingSolution(), talkParticipation);
         default:
           return false;
@@ -21,11 +21,11 @@ public class ParticipationSelectionMoveFilter implements SelectionFilter<StsPlan
   }
 
   private boolean hasNoTopicOccurence(StsPlanningProblem workingSolution, TalkParticipation talkParticipation) {
-    return workingSolution.getTalkParticipations().stream().noneMatch(t -> t.getTopic().equals(talkParticipation.getTopic()));
+    return talkParticipation.getTopic() == null || workingSolution.getTalkParticipations().stream().noneMatch(t -> t.getTopic() != null && t.getTopic().equals(talkParticipation.getTopic()));
   }
 
   private boolean hasNoPointerOccurenceInThisTimeSlot(StsPlanningProblem workingSolution, TalkParticipation talkParticipation) {
-    return workingSolution.getTalkParticipations().stream().filter(talkpart -> talkpart.getTimeSlot().getStart().equals(talkParticipation.getTimeSlot().getStart()))
-        .noneMatch(talkPart -> talkPart.getPointer().equals(talkParticipation.getPointer()));
+    return talkParticipation.getPointer() == null ||  workingSolution.getTalkParticipations().stream().filter(talkpart -> talkpart.getTimeSlot().getStart().equals(talkParticipation.getTimeSlot().getStart()))
+        .noneMatch(talkPart -> talkPart.getPointer() != null && talkPart.getPointer().equals(talkParticipation.getPointer()));
   }
 }

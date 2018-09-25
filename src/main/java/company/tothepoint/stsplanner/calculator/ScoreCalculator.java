@@ -15,7 +15,7 @@ public class ScoreCalculator implements EasyScoreCalculator<StsPlanningProblem> 
 
   private HardSoftScore awardForTakingTalks(StsPlanningProblem planningProblem) {
     return HardSoftScore.valueOf(planningProblem.getTalkParticipations().stream()
-        .map(talkParticipation -> talkParticipation.getTopic() != null)
+        .filter(talkParticipation -> talkParticipation.getTopic() != null)
         .mapToInt(x -> 100)
         .sum(), 0);
   }

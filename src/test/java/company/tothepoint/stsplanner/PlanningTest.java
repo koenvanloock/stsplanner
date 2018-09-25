@@ -1,6 +1,5 @@
 package company.tothepoint.stsplanner;
 
-import company.tothepoint.stsplanner.model.Room;
 import company.tothepoint.stsplanner.model.StsPlanningProblem;
 import company.tothepoint.stsplanner.model.TalkParticipation;
 import org.junit.Test;
@@ -13,7 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.stream.Collectors;
 
 import static company.tothepoint.stsplanner.TestData.*;
@@ -22,7 +20,6 @@ import static company.tothepoint.stsplanner.TestData.*;
 @SpringBootTest
 @AutoConfigureMockMvc
 public class PlanningTest {
-
 
 
   @Autowired
@@ -39,6 +36,8 @@ public class PlanningTest {
         Arrays.asList(KAJS_TALK, KOENS_TALK),
         LocalDateTime.now().minusHours(3),
         LocalDateTime.now()));
+
+    System.out.println(problem);
 
     System.out.println(problem.getTalkParticipations().stream()
         .map(TalkParticipation::toString)
