@@ -14,12 +14,10 @@
         <secondsSpentLimit>5</secondsSpentLimit>
     </termination>
 
-    <!--<localSearch>
-        <unionMoveSelector>
-            <changeMoveSelector>
-                <filterClass>be.bitsandmore.fireplug.alertapi.service.userselection.move.VehicleSeatChangeMoveFilter</filterClass>
-            </changeMoveSelector>
-        </unionMoveSelector>
+    <localSearch>
+        <changeMoveSelector>
+            <filterClass>company.tothepoint.stsplanner.filter.ParticipationSelectionMoveFilter</filterClass>
+        </changeMoveSelector>
     </localSearch>
 
     <environmentMode>PRODUCTION</environmentMode>-->

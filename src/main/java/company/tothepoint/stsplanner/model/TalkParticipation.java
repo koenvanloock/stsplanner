@@ -5,6 +5,8 @@ import lombok.Setter;
 import org.optaplanner.core.api.domain.entity.PlanningEntity;
 import org.optaplanner.core.api.domain.variable.PlanningVariable;
 
+import static java.util.Optional.ofNullable;
+
 @PlanningEntity
 @Setter
 @NoArgsConstructor
@@ -23,12 +25,16 @@ public class TalkParticipation {
     this.spotNr = spotNr;
   }
 
-  @PlanningVariable(valueRangeProviderRefs = {"pointers"})
+  public TimeSlot getTimeSlot() {
+    return timeSlot;
+  }
+
+  @PlanningVariable(valueRangeProviderRefs = {"pointers"}, nullable = true)
   public Pointer getPointer() {
     return pointer;
   }
 
-  @PlanningVariable(valueRangeProviderRefs = {"topics"})
+  @PlanningVariable(valueRangeProviderRefs = {"topics"}, nullable = true)
   public Topic getTopic() {
     return topic;
   }
@@ -36,8 +42,8 @@ public class TalkParticipation {
   @Override
   public String toString() {
     return "TalkParticipation(topic=" +
-        topic.getSubject() + " pointer=" +
+        ofNullable(topic).map(Topic::getSubject).orElse("Empty") + " pointer=" +
         " room=" + room + " spotNr=" + spotNr +
-        " " + pointer + ")";
+        " " + ofNullable(pointer).map(Pointer::toString).orElse("no-one") + ")";
   }
 }
